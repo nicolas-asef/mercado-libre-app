@@ -6,7 +6,7 @@ const {
   DB_USER, DB_PASSWORD, DB_HOST,
 } = process.env;
 
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/countries`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/meli`, {
   logging: false,
   native: false, 
 });
@@ -25,10 +25,10 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map((entry) => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Country, Actividad } = sequelize.models;
+const { Product, Category } = sequelize.models;
 
-Country.belongsToMany(Actividad, {through: "CountryActividad"})
-Actividad.belongsToMany(Country, {through: "CountryActividad"})
+Product.belongsToMany(Category, {through: "ProductCategory"})
+Category.belongsToMany(Product, {through: "ProductCategory"})
 
 module.exports = {
   ...sequelize.models,
