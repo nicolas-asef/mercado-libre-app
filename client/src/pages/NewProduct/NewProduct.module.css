@@ -1,0 +1,14 @@
+.divTop{
+    background-color: #ffe46c;
+    padding: 100px;
+}
+
+.p{
+    margin: 0;
+    font-size: 25px;
+}
+
+.selectSale{
+    display: flex;
+    justify-content: center;
+}
